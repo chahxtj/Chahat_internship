@@ -34,3 +34,5 @@ Enter second number: 6
 Enter the choice of operation (+, -, *, /): +
 
 Result: 11.00
+
+Implemented as part of Statement 1
