@@ -9,7 +9,6 @@ import (
 
 func main() {
 	fmt.Println("Simple Go Calculator")
-
 	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Print("Enter first number: ")
