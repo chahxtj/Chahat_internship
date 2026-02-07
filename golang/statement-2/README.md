@@ -3,10 +3,9 @@ It lets you store and manage a list of strings using simple commands.
 
 You can add items, list them, check if something exists, remove items, and quit the program.
 
-🔧 How it Works
+##  Workflow
 
 When you run the program, it keeps asking you for a command:
-
 • add → add a new string
 • list → show everything you’ve added
 • remove → delete a string
@@ -15,7 +14,7 @@ When you run the program, it keeps asking you for a command:
 
 For commands like add, remove, and check, the program will ask you to type a string.
 
-▶️ How to Run
+## How to Run
 
 Make sure Go is installed:
 
@@ -27,7 +26,7 @@ Then run:
 cd golang/statement-2
 go run main.go
 
-🧪 Example
+## Example
 Command: add
 Input: hello
 Added!
