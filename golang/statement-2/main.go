@@ -7,81 +7,91 @@ import (
 	"strings"
 )
 
+func add(scanner *bufio.Scanner, items []string) []string {
+	fmt.Print("Input: ")
+	scanner.Scan()
+	input := scanner.Text()
+	items = append(items, input)
+	fmt.Println("Added!")
+	return items
+}
+
+func check(scanner *bufio.Scanner, items []string) {
+	fmt.Print("Input: ")
+	scanner.Scan()
+	input := scanner.Text()
+
+	for _, v := range items {
+		if v == input {
+			fmt.Println("Your searched item exists")
+			return
+		}
+	}
+	fmt.Println("Searched item doesn't exist")
+}
+
+func list(items []string) {
+	if len(items) == 0 {
+		fmt.Println("List is empty")
+		return
+	}
+	for _, v := range items {
+		fmt.Println("-", v)
+	}
+}
+
+func remove(scanner *bufio.Scanner, items []string) []string {
+	fmt.Print("Input: ")
+	scanner.Scan()
+	input := scanner.Text()
+	newItems := []string{}
+	removed := false
+
+	for _, v := range items {
+		if v != input {
+			newItems = append(newItems, v)
+		} else {
+			removed = true
+		}
+	}
+	if removed {
+		fmt.Println("Item is Removed")
+	} else {
+		fmt.Println("Not found")
+	}
+	return newItems
+}
+
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	items := []string{}
 
 	for {
-
 		fmt.Println("------SELECT YOUR CHOICE OF COMMAND------")
-		fmt.Println("Choices: add, list, remove, check, quit")
+		fmt.Println("Choices: -> add, list, remove, check, quit")
 		fmt.Print("Choice: ")
 		scanner.Scan()
 
 		choice := strings.ToLower(scanner.Text())
 
-		if choice == "add" {
-			fmt.Print("Input: ")
-			scanner.Scan()
-			items = append(items, scanner.Text())
-			fmt.Println("Added!")
+		switch choice {
+		case "add":
+			items = add(scanner, items)
 
-		} else if choice == "check" {
-			fmt.Print("Input: ")
-			scanner.Scan()
-			input := scanner.Text()
-			found := false
+		case "check":
+			check(scanner, items)
 
-			for _, v := range items {
-				if v == input {
-					found = true
-				}
-			}
+		case "list":
+			list(items)
 
-			if found {
-				fmt.Println("Exists!")
-			} else {
+		case "remove":
+			items = remove(scanner, items)
 
-				fmt.Println("Does not exist")
-			}
-
-		} else if choice == "list" {
-			if len(items) == 0 {
-				fmt.Println("List empty")
-			}
-			for _, v := range items {
-				fmt.Println("-", v)
-			}
-
-		} else if choice == "remove" {
-			fmt.Print("Input: ")
-			scanner.Scan()
-			input := scanner.Text()
-
-			newItems := []string{}
-			removed := false
-
-			for _, v := range items {
-				if v != input {
-					newItems = append(newItems, v)
-				} else {
-					removed = true
-				}
-			}
-
-			items = newItems
-
-			if removed {
-				fmt.Println("Removed!")
-			} else {
-				fmt.Println("Not found")
-			}
-
-		} else if choice == "quit" {
+		case "quit":
 			fmt.Println("Bye")
-			break
+			return
 
-		} else {
+		default:
 			fmt.Println("Invalid choice: TRY AGAIN")
 		}
 	}
