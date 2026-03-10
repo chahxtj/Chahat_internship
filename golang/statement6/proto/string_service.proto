@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package stringservice;
+service StringService {
+  rpc Add(StringRequest) returns (StringResponse);
+  rpc Remove(StringRequest) returns (StringResponse);
+  rpc Check(StringRequest) returns (StringResponse);
+  rpc List(Empty) returns (ListResponse);
+}
+message StringRequest { string value = 1; }
+message StringResponse { string message = 1; }
+message ListResponse { repeated string values = 1; }
+message Empty {}
